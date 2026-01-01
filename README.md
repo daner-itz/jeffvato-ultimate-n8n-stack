@@ -1,5 +1,11 @@
 # Jeffvato Ultimate n8n Stack
 
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![n8n](https://img.shields.io/badge/n8n-v1.123.5-EA4B71?logo=n8n&logoColor=white)](https://n8n.io/)
+[![MCP](https://img.shields.io/badge/MCP-Enabled-7C3AED?logo=anthropic&logoColor=white)](https://modelcontextprotocol.io/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/jeffvato/jeffvato-ultimate-n8n-stack?style=social)](https://github.com/jeffvato/jeffvato-ultimate-n8n-stack/stargazers)
+
 A production-ready n8n automation platform with integrated AI services, vector databases, and Model Context Protocol (MCP) servers for Claude Code integration.
 
 ## 🌟 Features
