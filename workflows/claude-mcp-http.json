@@ -1,0 +1,90 @@
+{
+  "name": "Claude Code MCP - HTTP Server",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mcp-server/http",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "mcp-http-webhook",
+      "name": "MCP HTTP Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "mcp-server-http",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mcp-http-bearer-auth",
+          "name": "MCP HTTP Bearer Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// MCP HTTP Server for Claude Code\n// Full MCP protocol implementation\n\nconst body = $input.item.json.body;\nconst method = body?.method || 'unknown';\n\nconsole.log('MCP HTTP Request:', JSON.stringify(body, null, 2));\n\n// Handle MCP protocol methods\nswitch(method) {\n  case 'initialize':\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          protocolVersion: '2024-11-05',\n          capabilities: {\n            tools: {},\n            resources: {},\n            prompts: {}\n          },\n          serverInfo: {\n            name: 'n8n-mcp-http-server',\n            version: '1.0.0'\n          }\n        }\n      }\n    };\n\n  case 'tools/list':\n    // Define your custom MCP tools here\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          tools: [\n            {\n              name: 'get_workflow_status',\n              description: 'Get the status of n8n workflows',\n              inputSchema: {\n                type: 'object',\n                properties: {\n                  workflow_id: {\n                    type: 'string',\n                    description: 'The ID of the workflow'\n                  }\n                }\n              }\n            },\n            {\n              name: 'trigger_workflow',\n              description: 'Trigger an n8n workflow',\n              inputSchema: {\n                type: 'object',\n                properties: {\n                  workflow_id: {\n                    type: 'string',\n                    description: 'The ID of the workflow to trigger'\n                  },\n                  data: {\n                    type: 'object',\n                    description: 'Data to pass to the workflow'\n                  }\n                },\n                required: ['workflow_id']\n              }\n            }\n          ]\n        }\n      }\n    };\n\n  case 'tools/call':\n    const toolName = body.params?.name;\n    const args = body.params?.arguments || {};\n    \n    // Implement tool logic\n    switch(toolName) {\n      case 'get_workflow_status':\n        return {\n          json: {\n            jsonrpc: '2.0',\n            id: body.id,\n            result: {\n              content: [\n                {\n                  type: 'text',\n                  text: `Workflow status check for: ${args.workflow_id}\\n\\nThis is a placeholder. Implement actual n8n API calls here.`\n                }\n              ]\n            }\n          }\n        };\n      \n      case 'trigger_workflow':\n        return {\n          json: {\n            jsonrpc: '2.0',\n            id: body.id,\n            result: {\n              content: [\n                {\n                  type: 'text',\n                  text: `Triggered workflow: ${args.workflow_id}\\n\\nThis is a placeholder. Implement actual workflow triggering here.`\n                }\n              ]\n            }\n          }\n        };\n      \n      default:\n        return {\n          json: {\n            jsonrpc: '2.0',\n            id: body.id,\n            error: {\n              code: -32602,\n              message: `Unknown tool: ${toolName}`\n            }\n          }\n        };\n    }\n\n  case 'resources/list':\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          resources: []\n        }\n      }\n    };\n\n  case 'prompts/list':\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          prompts: []\n        }\n      }\n    };\n\n  default:\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        error: {\n          code: -32601,\n          message: `Method not found: ${method}`\n        }\n      }\n    };\n}"
+      },
+      "id": "mcp-http-handler",
+      "name": "MCP HTTP Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "id": "mcp-http-response",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "MCP HTTP Webhook": {
+      "main": [
+        [
+          {
+            "node": "MCP HTTP Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP HTTP Handler": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-01T00:00:00.000Z",
+  "versionId": "1"
+}

@@ -1,0 +1,90 @@
+{
+  "name": "Claude Code MCP - Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "2a801a68-3d60-479a-ba95-831efcf52af2",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "2a801a68-3d60-479a-ba95-831efcf52af2",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mcp-bearer-auth",
+          "name": "MCP Bearer Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// MCP Tool Handler for Claude Code\n// This processes MCP protocol requests from Claude Code\n\nconst body = $input.item.json.body;\nconst method = body?.method || 'unknown';\n\nconsole.log('MCP Request:', JSON.stringify(body, null, 2));\n\n// Handle different MCP methods\nswitch(method) {\n  case 'initialize':\n    // Return server capabilities\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          protocolVersion: '2024-11-05',\n          capabilities: {\n            tools: {},\n            resources: {}\n          },\n          serverInfo: {\n            name: 'n8n-mcp-server',\n            version: '1.0.0'\n          }\n        }\n      }\n    };\n\n  case 'tools/list':\n    // Return available tools\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          tools: [\n            {\n              name: 'example_tool',\n              description: 'An example MCP tool',\n              inputSchema: {\n                type: 'object',\n                properties: {\n                  message: {\n                    type: 'string',\n                    description: 'A message to process'\n                  }\n                },\n                required: ['message']\n              }\n            }\n          ]\n        }\n      }\n    };\n\n  case 'tools/call':\n    // Execute a tool\n    const toolName = body.params?.name;\n    const args = body.params?.arguments || {};\n    \n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        result: {\n          content: [\n            {\n              type: 'text',\n              text: `Tool '${toolName}' executed with args: ${JSON.stringify(args)}`\n            }\n          ]\n        }\n      }\n    };\n\n  default:\n    // Unknown method\n    return {\n      json: {\n        jsonrpc: '2.0',\n        id: body.id,\n        error: {\n          code: -32601,\n          message: `Method not found: ${method}`\n        }\n      }\n    };\n}"
+      },
+      "id": "mcp-handler",
+      "name": "MCP Request Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "id": "webhook-response",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "MCP Request Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Request Handler": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-01T00:00:00.000Z",
+  "versionId": "1"
+}

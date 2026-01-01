@@ -1,0 +1,55 @@
+# Environment variables (contains sensitive data)
+.env
+
+# n8n data directory
+n8n-data/
+
+# Credential files with actual tokens/keys
+workflows/mcp-credentials.json
+workflows/mcp-bearer-token-cred.json
+workflows/mcp-http-bearer-token-cred.json
+
+# Docker volumes (local data)
+pgdata/
+pgadmin-data/
+redis-data/
+qdrant_storage/
+ollama/
+openwebui-data/
+
+# Claude Code configuration (user-specific)
+.claude.json
+.claude.json.backup
+.claude/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (if any)
+node_modules/
+
+# Python cache (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
